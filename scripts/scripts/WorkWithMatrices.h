@@ -8,26 +8,26 @@ double randInRange(double min, double max)
     return min + range * random;
 }
 
-double **randm(int rows, int cols)
+double **randm(int n)
 {
-    double **mT = (double **)malloc(sizeof(double *) * rows);
+    double **mT = (double **)malloc(sizeof(double *) * n);
     int i, j;
-    for (i = 0; i < rows; i++) {
-        mT[i] = (double *)malloc(sizeof(double) * cols);
-        for (j = 0; j < cols; j++)
+    for (i = 0; i < n; i++) {
+        mT[i] = (double *)malloc(sizeof(double) * n);
+        for (j = 0; j < n; j++)
             mT[i][j] = randInRange(0.0, 2.0);
     }
     return mT;
 }
 
-int **mulmr(int rows, int cols, double **mT, double n3, double n4)
+int **mulmr(int n, double **mT, double n3, double n4)
 {
-    int **mA = (int **)malloc(sizeof(int *) * rows);
+    int **mA = (int **)malloc(sizeof(int *) * n);
     double coefficient = 1.0 - n3 * 0.02 - n4 * 0.005 - 0.25;
     int i, j;
-    for (i = 0; i < rows; i++) {
-        mA[i] = (int *)malloc(sizeof(int) * cols);
-        for (j = 0; j < cols; j++)
+    for (i = 0; i < n; i++) {
+        mA[i] = (int *)malloc(sizeof(int) * n);
+        for (j = 0; j < n; j++)
             mA[i][j] = (int)(mT[i][j] * coefficient);
     }
     return mA;
