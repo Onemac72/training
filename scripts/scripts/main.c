@@ -13,13 +13,13 @@ double randInRange(double min, double max)
     return min + range * random;
 }
 
-double **randm(int rows, int cols)
+double **randm(int n)
 {
-    double **mT = (double **)malloc(sizeof(double *) * rows);
+    double **mT = (double **)malloc(sizeof(double *) * n);
     int i, j;
-    for (i = 0; i < rows; i++) {
-        mT[i] = (double *)malloc(sizeof(double) * cols);
-        for (j = 0; j < cols; j++)
+    for (i = 0; i < n; i++) {
+        mT[i] = (double *)malloc(sizeof(double) * n);
+        for (j = 0; j < n; j++)
             mT[i][j] = randInRange(0.0, 2.0);
     }
     return mT;
@@ -495,7 +495,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,
             break;
         case WM_CREATE:
             srand(1000 * N1 + 100 * N2 + 10 * N3 + N4);
-            double **T = randm(ROWS, COLS);
+            double **T = randm(N1);
             A = mulmr(ROWS, COLS, T, N3, N4);
             S = makeMSymmetric(ROWS, COLS, A);
             printf("Matrix T\n");               // Логування створених
